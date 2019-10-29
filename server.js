@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(routes);
+// app.use(routes);
 
 // var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/googleBooks";
 
