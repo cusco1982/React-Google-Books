@@ -26,7 +26,7 @@ const bookSchema = new Schema({
     link: {type: String, required: false}
 });
 
-const Book = mongoose.model("Book", bookSchema);
+const SavedBooks = mongoose.model("SavedBooks", bookSchema);
 
-module.exports = Book;
+module.exports = SavedBooks;
 //SavedBooks
