@@ -2,7 +2,7 @@ import React from "react";
 
 // This file exports the Input, TextArea, and FormBtn components
 
-export function Form(props) {
+function Form(props) {
   return (
     <div className="container">
       <div className="card">
@@ -30,3 +30,5 @@ export function Form(props) {
     </div>
   );
 }
+
+export default Form;

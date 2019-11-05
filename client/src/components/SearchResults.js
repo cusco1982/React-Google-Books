@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export function SearchResults({ children }) {
+function SearchResults({ children }) {
     return (
         <div className="container">
             <h1 className="card-header">Results</h1>
@@ -11,3 +11,5 @@ export function SearchResults({ children }) {
         </div>
     );
 }
+
+export default SearchResults;
