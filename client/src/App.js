@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 // import logo from "./logo.svg";
 import "./App.css";
-import Nav from "./components/Nav";
+import Nav from "./components"
 import Jumbotron from "./components/Jumbotron";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Books from "./pages/Books";
-import { Input } from "../components/Form";
+// import Form from "../components/Form";
 
 
 
