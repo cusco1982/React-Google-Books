@@ -18,10 +18,11 @@ import BookItemCard from "../components/BookItemCard";
 
 class Books extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    results: [],
+    // title: "",
+    // author: "",
+    // synopsis: "",
+    savedBooks=[],
   };
 
   componentDidMount() {
