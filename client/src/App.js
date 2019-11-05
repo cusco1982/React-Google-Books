@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
-import NavBar from "./components/Navbar";
+import NavBar from "./components/Nav";
 import Jumbotron from "./components/Jumbotron";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Books from "./pages/Books";
@@ -15,11 +15,10 @@ function App() {
     <Router>
       <div>
         <Nav />
+        <Jumbotron/>
         <Switch>
           <Route exact path="/" component={Books} />
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/books/:id" component={Detail} />
-          <Route component={NoMatch} />
+          <Route exact path="/saved" component={Books} />
         </Switch>
       </div>
     </Router>
