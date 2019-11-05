@@ -22,12 +22,12 @@ class Books extends Component {
     // title: "",
     // author: "",
     // synopsis: "",
-    savedBooks=[],
+    savedBooks:[],
   };
 
-  componentDidMount() {
-    this.loadBooks();
-  }
+  // componentDidMount() {
+  //   this.loadBooks();
+  // }
 
   loadBooks = () => {
     API.getBooks()
@@ -65,64 +65,57 @@ class Books extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.author && this.state.title)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit Book
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {this.state.books.length ? (
-              <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+        <div>
+            {window.location.pathname === "/" ?
+                <div>
+                    <SearchCard
+                        value={this.state.bookSearch}
+                        onChange={this.handleInputChange}
+                        onClick={this.handleSearch}
+                    />
+
+                    <SearchResult>
+                            {this.state.results.length ? (
+                                this.state.results.map( (book, i) => {
+                                    return (
+                                        <BookItemCard
+                                            key={book.id}
+                                            title={book.volumeInfo.title}
+                                            author={(book.volumeInfo.authors) ? (book.volumeInfo.authors[0]) : ("Anonymous")}
+                                            href={book.volumeInfo.previewLink}
+                                            thumbnail={(book.volumeInfo.imageLinks) ? (book.volumeInfo.imageLinks.thumbnail) : ("https://iconutopia.com/wp-content/uploads/2016/06/rocket-book.png")}
+                                            description={book.volumeInfo.description}
+                                            save={this.handleSave}
+                                            index={i}
+                                        />
+                                    )
+                                })
+                            ) : (<h3>No Results Found.</h3>)}
+                    </SearchResult>
+                </div>
+                :
+                    <SaveCard>
+                        {this.state.savedBooks.length ? (
+                            this.state.savedBooks.map((book, i) => {
+                                return (
+                                    <BookItemCard
+                                        key={book._id}
+                                        title={book.title}
+                                        author={book.author}
+                                        href={book.link}
+                                        thumbnail={(book.thumbnail) ? (book.thumbnail) : ("https://iconutopia.com/wp-content/uploads/2016/06/rocket-book.png")}
+                                        description = {book.description}
+                                        delete={this.handleDelete}
+                                        index={i}
+                                    />
+                                )
+                            })
+                        ) : (<h3>No Saved Books</h3>)}
+                    </SaveCard>
+            }
+        </div>
+    )
+}
 }
 
 export default Books;
