@@ -1,15 +1,13 @@
 import React from "react";
 
 
-export function Col({ size, children }) {
-  return (
-    <div
-      className={size
-        .split(" ")
-        .map(size => "col-" + size)
-        .join(" ")}
-    >
-      {children}
-    </div>
-  );
+export function SearchResults({ children }) {
+    return (
+        <div className="container">
+            <h1 className="card-header">Results</h1>
+            <div className="card">
+                {children}
+            </div>
+        </div>
+    );
 }
