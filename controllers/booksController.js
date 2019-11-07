@@ -1,37 +1,29 @@
 const db = require("../models");
 
-// Defining methods for the booksController
 module.exports = {
-  findAll: function(req, res) {
-    db.Book
-      .find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findById: function(req, res) {
-    db.Book
-      .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  create: function(req, res) {
-    db.Book
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  update: function(req, res) {
-    db.Book
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  remove: function(req, res) {
-    db.Book
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  }
+    findAllSaved: (req, res) => {
+        db.SavedBooks
+        .find()
+        .then(function(result){
+            res.json(result)
+        }).catch(err => res.status(422).json(err));
+    },
+    create: (req, res) => {
+        db.SavedBooks
+        .create({
+            title: req.body.title,
+            link: req.body.link,
+            thumbnail: req.body.thumbnail,
+            author: req.body.author,
+            description: eq.body.description,
+            key: req.body.key
+        }).then(res.end())
+    },
+    remove: (req, res) => {
+        db.SavedBooks
+        .findById({ _id: req.params.id })
+        .then(dbModel => dbModel.remove())
+        .then(dbModel=> res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    }
 };

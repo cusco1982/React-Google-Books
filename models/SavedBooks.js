@@ -15,6 +15,22 @@
 //     link: "http://books.google.com/books?id=sazytgAACAAJ&dq=title:The+Hunger+Games&hl=&source=gbs_api"
 //     title: "The Hunger Games"
 //   }
+// const mongoose = require("mongoose");
+// const Schema = mongoose.Schema;
+
+// const bookSchema = new Schema({
+//     title: {type: String, required: true},
+//     author: {type: String, required: false},
+//     description: {type: String, required: false},
+//     image: {type: String, required: false},
+//     link: {type: String, required: false}
+// });
+
+// const SavedBooks = mongoose.model("SavedBooks", bookSchema);
+
+// module.exports = SavedBooks;
+// //SavedBooks
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -22,11 +38,10 @@ const bookSchema = new Schema({
     title: {type: String, required: true},
     author: {type: String, required: false},
     description: {type: String, required: false},
-    image: {type: String, required: false},
-    link: {type: String, required: false}
+    link: {type: String, required: false},
+    thumbnail: {type: String, required: false}
 });
 
 const SavedBooks = mongoose.model("SavedBooks", bookSchema);
 
 module.exports = SavedBooks;
-//SavedBooks
